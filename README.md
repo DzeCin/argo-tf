@@ -1,8 +1,8 @@
 The relevant repos are :
 
-- argocd repo: I chose to use the gitops repository layout defined in this documentation https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
+- [argocd repo](https://github.com/DzeCin/argo): I chose to use the gitops repository layout defined in this documentation https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
 
-- terraform: I chose to use this repository layout https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/medium-terraform
+- [terraform](https://github.com/DzeCin/argo-tf): I chose to use this repository layout https://github.com/antonbabenko/terraform-best-practices/tree/master/examples/medium-terraform
 
 
 Difficulty levels:
