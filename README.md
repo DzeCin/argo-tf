@@ -126,7 +126,7 @@ Helm chart and Operators are a good way to manage a kubernetes cluster.
  - Node autoscalling for high load 
  - Proper resource management- > https://learnk8s.io/setting-cpu-memory-limits-requests
  - Multiple environment
- - Reduce costs
+ - Reduce costs -> Minimal cluster resoureces
  - Create a cluster dedicated to "infra" services such as monitoring and share it between environments
  - Load tests to define resources needed/Pen Tests
  - Use minimal docker images
