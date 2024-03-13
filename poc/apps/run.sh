@@ -1,0 +1,1 @@
+terraform plan -var "cluster_name=$(terraform -chdir=../infra output -raw cluster_name)"
