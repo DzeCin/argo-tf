@@ -6,9 +6,9 @@ The relevant repos are :
 
 
 Difficulty levels:
- - Easy
- - Medium
- - Hard
+ - Easy: Finding the correct helm values was the most complicated part. 
+ - Medium: Needed to learn new things. Implementation was simple.
+ - Hard: It took me a lot of time to learn and implement.
 
 ### Create a kubernetes cluster / deploy argocd (6h -> first time using argocd, difficulty medium)
 
@@ -113,6 +113,7 @@ Helm chart and Operators are a good way to manage a kubernetes cluster.
  - Trivy operator to scan images used at all times
  - One age key per env
  - Secure repo connection from argocd
+ - Audit log ingestion
 
 ### Reliability/Monitoring considerations:
  - Most of the services are set in HA mode + poddisruption budgets are enables
@@ -122,7 +123,7 @@ Helm chart and Operators are a good way to manage a kubernetes cluster.
  - HPA defined as much as possible
 
 ### Reliability/Monitoring for production readiness:
- - Implement a proper Observability stack + Monitoring -> Grafana/Prometheus/Loki/Tempo/(Opentelemetry ?)/Alertmanager
+ - Implement a proper Observability stack + Monitoring -> Grafana/Prometheus/Loki/Tempo/(Opentelemetry ?)/Alertmanager/Fluentbit
  - Node autoscalling for high load 
  - Proper resource management- > https://learnk8s.io/setting-cpu-memory-limits-requests
  - Multiple environment
