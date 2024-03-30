@@ -132,3 +132,69 @@ Helm chart and Operators are a good way to manage a kubernetes cluster.
  - Load tests to define resources needed/Pen Tests
  - Use minimal docker images
  - Multiple AZ deployments + HA kubeapi
+
+## Possible other repository layout for Helm (ex keycloak)
+ 
+argo repo:
+
+    .
+    ├── kustomization.yaml        # resources -> keycloak/
+    ├── keycloak                
+    │   ├── applicationset.yaml   # Git generator to keycloak-argo/env/*/config.yaml
+    └── ...
+
+applicationset.yaml:
+    
+    apiVersion: argoproj.io/v1alpha1
+    kind: ApplicationSet
+    metadata:
+      name: keycloak-app-set
+      namespace: argocd
+    spec:
+      generators:
+      - git:
+          repoURL: https://github.com/keycloak-argo
+          revision: HEAD
+          directories:
+          - path: env/*/app-config.yaml
+      template:
+        metadata:
+          name: '{{.app-name}}'
+        spec:
+          project: "infra"
+          source:
+            repoURL: https://github.com/keycloak-argo
+            targetRevision: HEAD
+            path: '{{.path.path}}'
+            helm:
+              valueFiles:
+                - {{.path.path}}/values.yaml
+                - secret://{{.path.path}}/secret-values.yaml 
+                - base/common-values.yaml
+          destination:
+            server: https://kubernetes.default.svc
+            namespace: '{{.namespace}}'
+          syncPolicy:
+            syncOptions:
+            - CreateNamespace=true
+
+
+keycloak-argo repo:
+
+    .
+    ├── base
+    |   ├── common-values.yaml    # values shared across environment
+    ├── env                
+    │   ├── poc                   # Poc env
+    |       ├── Chart.yaml
+    |       ├── values.yaml
+    |       ├── secret-values.yaml
+    |       ├── app-config.yaml
+    |   ├── prod
+    |       ├── ... 
+    |   ├── uat
+    |       ├── ...
+    └── ...
+
+ - argo-init -> argo/keycloak/applicationset.yaml (file generator) -> keycloak-argo/env/*/config.yaml 
+ 
