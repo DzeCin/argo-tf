@@ -155,7 +155,7 @@ applicationset.yaml:
       - git:
           repoURL: https://github.com/keycloak-argo
           revision: HEAD
-          directories:
+          files:
           - path: env/*/app-config.yaml
       template:
         metadata:
@@ -169,7 +169,7 @@ applicationset.yaml:
             helm:
               valueFiles:
                 - {{.path.path}}/values.yaml
-                - secret://{{.path.path}}/secret-values.yaml 
+                - secrets://{{.path.path}}/secret-values.yaml 
                 - base/common-values.yaml
           destination:
             server: https://kubernetes.default.svc
